@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        function checkCookie() {
+            let user = getCookie("register_error");
+            let user_1 = getCookie("register_error_name");
+            if (user != "") {
+                alert("Register fail");
+                document.cookie = "register_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+            if (user_1 != "") {
+                alert("Your name have already existent");
+                document.cookie = "register_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+        }
+    </script>
+</head>
+
+<body onload="checkCookie()">
+    <div class="container">
+        <form action="/register.php" method="post">
+            <p>Welcome</p>
+            <label for="name">Username: </label><br>
+            <input type="text" id="name" name="username" placeholder="Please enter your Account"><br>
+            <label for="pwd_1">Password:</label><br>
+            <input type="password" id="pwd_1" name="pwd_1" placeholder="Please enter your Password"><br>
+            <label for="pwd_2">Re-enter password</label><br>
+            <input type="password" id="pwd_2" name="pwd_2" placeholder="Please enter your Re-enter password"><br>
+            <input type="checkbox" id="enable" required>
+            <label for="enable">By signing up, you agree to Privacy Policy & Terms of Service</label><br><b></b>
+            <div class="g-recaptcha" data-sitekey="6Lesar0lAAAAAHmDrqkCN24JsP3Pjssy04A8CDDW"
+                style="padding-left: 100px;"></div>
+            <br />
+            <button type="submit" name="Register" value="register">Register </button>
+        </form>
+        <div style="text-align: center;">
+            You have already
+            <a href="login.html" target="_self">account.</a>
+            Click here!
+        </div>
+        <div class="drops">
+            <div class="drop drop-1"></div>
+            <div class="drop drop-2"></div>
+            <div class="drop drop-3"></div>
+            <div class="drop drop-4"></div>
+            <div class="drop drop-5"></div>
+        </div>
+    </div>
+</body>
+
+</html>
