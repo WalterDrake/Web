@@ -64,85 +64,85 @@ $user_name = $row['USERNAME'];
                                     ?>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="d-flex justify-content-center">
-                                    <?php
-                                    $res = $db_3->query("SELECT Prices FROM Shopping_Cart WHERE User_name ='$user_name' ");
-                                    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                        $value = $row["Prices"];
-                                        echo "$value$ <br>";
-                                    }
-                                    ?>
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-center">
+                                        <?php
+                                        $res = $db_3->query("SELECT Prices FROM Shopping_Cart WHERE User_name ='$user_name' ");
+                                        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                            $value = $row["Prices"];
+                                            echo "$value$ <br>";
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <pre class="tab"><div class = "d-flex justify-content-start font-weight-bold">        Total</div></pre>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex justify-content-center">
-                                    <?php
-                                    $total = 0;
-                                    $res = $db_3->query("SELECT Prices FROM Shopping_Cart WHERE User_name ='$user_name' ");
-                                    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-                                        $value = $row["Prices"];
-                                        $total += $value;
-                                    }
-                                    echo "$total$";
-                                    ?>
+                                <div class="col-md-8">
+                                    <pre class="tab"><div class = "d-flex justify-content-start font-weight-bold">        Total</div></pre>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <pre class="tab"><div class = "d-flex justify-content-start font-weight-bold">       Discount</div></pre>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex justify-content-center">
-                                    <?php
-                                    $discount = 0;
-                                    $date = (int)((int)date('d') / 7);
-                                    switch ($date) {
-                                        case 0:
-                                            $discount = 0.05;
-                                            break;
-                                        case 1:
-                                            $discount = 0.1;
-                                            break;
-                                        case 2:
-                                            $discount = 0.15;
-                                            break;
-                                        case 3:
-                                            $discount = 0.2;
-                                            break;
-                                        case 4:
-                                            $discount = 0.25;
-                                            break;
-                                    }
-                                    echo $discount * 100;
-                                    echo "%";
-                                    ?>
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-center">
+                                        <?php
+                                        $total = 0;
+                                        $res = $db_3->query("SELECT Prices FROM Shopping_Cart WHERE User_name ='$user_name' ");
+                                        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                                            $value = $row["Prices"];
+                                            $total += $value;
+                                        }
+                                        echo "$total$";
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <pre class="tab"><div class = "d-flex justify-content-start font-weight-bold">       Discount</div></pre>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-center">
+                                        <?php
+                                        $discount = 0;
+                                        $date = (int)((int)date('d') / 7);
+                                        switch ($date) {
+                                            case 0:
+                                                $discount = 0.05;
+                                                break;
+                                            case 1:
+                                                $discount = 0.1;
+                                                break;
+                                            case 2:
+                                                $discount = 0.15;
+                                                break;
+                                            case 3:
+                                                $discount = 0.2;
+                                                break;
+                                            case 4:
+                                                $discount = 0.25;
+                                                break;
+                                        }
+                                        echo $discount * 100;
+                                        echo "%";
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
+                        <div>
+                            <br>
+                            <div class="d-flex justify-content-center">
+                                <a href="payment.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">BUY</a>
+                            </div>
+                            <div class="d-flex justify-content-center"><?php
+                                                                        if (isset($_SESSION['status']) && $_SESSION['status'] == 'successful') {
+                                                                            echo '<p style="color: green;">Payment successful!</p>';
+                                                                            unset($_SESSION['status']);
+                                                                        } else if (isset($_SESSION['status']) && $_SESSION['status'] == 'Fail') { //fix it
+                                                                            echo '<p style="color: red;">Payment Fail!</p>';
+                                                                            unset($_SESSION['status']);
+                                                                        }
+                                                                        ?></div>
+                        </div>
                         <br>
-                        <div class="d-flex justify-content-center">
-                            <a href="payment.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">BUY</a>
-                        </div>
-                        <div class="d-flex justify-content-center"><?php
-                                                                    if (isset($_SESSION['status']) && $_SESSION['status'] == 'successful') {
-                                                                        echo '<p style="color: green;">Payment successful!</p>';
-                                                                        unset($_SESSION['status']);
-                                                                    } else if (isset($_SESSION['status']) && $_SESSION['status'] == 'Fail') { //fix it
-                                                                        echo '<p style="color: red;">Payment Fail!</p>';
-                                                                        unset($_SESSION['status']);
-                                                                    }
-                                                                    ?></div>
                     </div>
-                    <br>
                 </div>
             </div>
         </div>
-    </div>
 
 
 
