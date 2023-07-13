@@ -1,4 +1,5 @@
 <?php
+// Create a table of database
 include('connect_db_User.php');
 
 $db_1->exec("CREATE TABLE IF NOT EXISTS CUSTOMERS (
@@ -9,7 +10,7 @@ $db_1->exec("CREATE TABLE IF NOT EXISTS CUSTOMERS (
     PHONE INTERGER NULL,
     AVATAR CHAR NULL,
     MONEY INTEGER);");
-
+// Add user to database
 $db_1->exec("INSERT INTO CUSTOMERS (ID, USERNAME, PASSWORD, EMAIL, PHONE, AVATAR, MONEY) 
 
 VALUES (1,'ADMIN','202cb962ac59075b964b07152d234b70', 'admin@gmail.com', '123456789', '/resources/images/icons8-user-16.png', 0);");
