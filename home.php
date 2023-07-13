@@ -11,7 +11,7 @@ session_start();
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script>
     function onLoadFunction() {
-      const inputs = document.querySelectorAll('form input[type="number"][min="1"]');
+      const inputs = document.querySelectorAll('form input[type="number"][min="0"]');
       inputs.forEach(input => {
         input.value = 0;
       });
@@ -119,6 +119,7 @@ session_start();
             </div>
 
             <div class="col-md-4">
+              <!-- Show prices of products -->
               <div class="caption">
                 <p class="text-danger"><?php include("connect_db_Goods.php");
                                         $res = $db_2->query("SELECT Prices FROM GOODS WHERE Goods_name ='T-shirt'");
@@ -149,25 +150,26 @@ session_start();
 
             <div class="col-md-4">
               <form action="/Buy.php" method="post" method="post">
-                <input type="number" id="quantity1" name="quantity" min="1">
+                <input type="number" id="quantity1" name="quantity" min="0">
                 </script>
                 <button type="submit" class="btn btn-primary" name="Good" value="T-shirt">ADD</button>
               </form>
             </div>
             <div class="col-md-4">
               <form action="/Buy.php" method="post">
-                <input type="number" id="quantity2" name="quantity" min="1">
+                <input type="number" id="quantity2" name="quantity" min="0">
                 <button type="submit" class="btn btn-primary" name="Good" value="Jeans">ADD</button>
               </form>
             </div>
             <div class="col-md-4">
               <form action="/Buy.php" method="post">
-                <input type="number" id="quantity3" name="quantity" min="1">
+                <input type="number" id="quantity3" name="quantity" min="0">
                 <button type="submit" class="btn btn-primary" name="Good" value="Shoes">ADD</button>
               </form>
             </div>
           </div>
         </div>
+        <!-- Notice status about adding products -->
         <div class="d-flex justify-content-center"><?php
                                                     if (isset($_SESSION['status']) && $_SESSION['status'] == 'success') {
                                                       echo '<p style="color: green;">Purchase successful!</p>';
