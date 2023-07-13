@@ -1,10 +1,13 @@
 <?php
+# Get database through "connect_db_User.php"
 include("connect_db_User.php");
 $name = $email = $pass = $phone = $upload = $upload_start = "";
 $emailErr = $phoneErr = $uploadErr = $uploadErr_end = "";
 
-// Change username, password, email, phone
+# Change username, password, email, phone
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
   if (!empty($_POST["name"])) {
     $name = test_input($_POST["name"]);
     $res = $db_1->query("UPDATE CUSTOMERS SET USERNAME = :user WHERE ID = :value ");
@@ -64,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+  $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION));
 
 
 
@@ -74,11 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       return header("Location:form_edit.php");
     }
 
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if ($check !== false) {
+    $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
+    if (in_array(($imageFileType), $allowedExtensions)) {
       $upload_start = "File is an image - " . $check["mime"] . ".";
       $uploadOk = 1;
-    } else {
+    } else{
       $uploadErr = "File is not an image.";
       $uploadOk = 0;
     }
@@ -100,8 +103,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uploadErr_end = "Sorry, your file was not uploaded.";
   } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+      $previousAvatar = $db_1->query("SELECT AVATAR FROM CUSTOMERS WHERE ID = :value ");
+      $previousAvatar->execute([':value' => $id_user = $_COOKIE['user_name']]);
+      $row = $previousAvatar->fetch(PDO::FETCH_ASSOC);
+      $previousFile = $row['AVATAR'];
+      
+      // Replace old image
+      if (!empty($previousFile) && file_exists($previousFile)) {
+        unlink($previousFile);
+      }
+
       $res = $db_1->query("UPDATE CUSTOMERS SET AVATAR = :avatar WHERE ID = :value ");
       $res->execute([':avatar' => $target_file, ':value' => $id_user = $_COOKIE['user_name']]);
+
       $upload =  "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
     } else {
       $uploadErr = "Sorry, there was an error uploading your file.";
