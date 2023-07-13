@@ -6,3 +6,7 @@
 # Prepare:
 - nginx, php are installed on your device.
 - Before uploading your avatar, You need to create a folder for uploads in resources. =))
+
+# Introduce:
+Hello, this is my simple web shopping page. This is the basis, so it has many security vulnerabilities, and the logic code is not very good (But it still runs well =]]).
+If you are interesting. You can download and test it on localhost or using nginx, as I have mentioned above. Thanks
