@@ -44,6 +44,7 @@ switch ($date) {
         break;
 }
 
+// Payment products
 if (($money - $total * $discount) < 0) {
     $_SESSION['status'] = 'Fail';
     header("Location: /Shopping_Cart.php");
