@@ -36,6 +36,7 @@ if (isset($_POST["Register"])) {
         $db = null;
     }
 }
+
 function test_input($data)
 {
     $data = trim($data);
@@ -43,6 +44,7 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+
 function check($user_name)
 {
     include("connect_db_User.php");
