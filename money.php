@@ -3,6 +3,7 @@ include("connect_db_User.php");
 $money = $transfer_money = $transfer_money_user = "";
 $moneyErr = $transfer_moneyErr = $transfer_money_userErr = "";
 define("max_money", 2147483647);
+
 // Charge money into database
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -86,6 +87,7 @@ function test_input($data)
 
 $db_1 = null; // Disconnect database
 ?>
+
 <!DOCTYPE html>
 <html>
 
