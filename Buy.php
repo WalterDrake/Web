@@ -23,22 +23,22 @@ function check($name) //Check user have bought this good
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    //Get price of good
+    //Get price of goods
     $res = $db_2->query("SELECT Prices FROM GOODS WHERE Goods_name = :name");
     $res->execute([':name' => $_POST['Good']]);
     $row = $res->fetch(PDO::FETCH_ASSOC);
     $price = $row['Prices'];
 
     if ($_POST["Good"] == "T-shirt") {
-
+        
         if (check($_POST["Good"])) {
-
+            
             $res = $db_3->query("SELECT Prices, Amount FROM Shopping_Cart WHERE User_name = '$user_name' ");
             $get = $res->fetch(PDO::FETCH_ASSOC);
             $old_price = $get['Prices'];
             $old_amount = $get['Amount'];
-
-
+            
+            
             $res = $db_3->prepare("UPDATE Shopping_Cart SET Prices = :prices, Amount = :amount WHERE User_name = '$user_name' ");
             $data_1 = [
                 ':prices' => $old_price + $price * $_POST["quantity"],
@@ -52,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ':amount' => $_POST["quantity"],
                 ':owner' => $user_name
             ];
-
+            
+            // Add products to database
             $sql = "INSERT INTO Shopping_Cart (Goods_name,Prices,Amount,User_name) values (:name, :prices, :amount, :owner)";
             $add = $db_3->prepare($sql);
             $add->execute($data_1);
@@ -126,6 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['status'] = 'success';
         header("Location: /home.php");
     }
+    // Disable connected
     $res = null;
     $row = null;
     $db_1 = null;
