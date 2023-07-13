@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
-  <title>home</title>
+  <title>Index</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+  <!-- Get cookie from the website, if cookie "remember me" exists, log in to "home.php" -->
   <script>
     function getCookie(cname) {
       let name = cname + "=";
@@ -30,16 +32,19 @@
       }
     }
   </script>
+
 </head>
 
 <body onload="checkCookie()">
+
   <header>
     <div class="p-3 mb-sm-2 bg-success text-white">
       <h1 class="text-center">SHOPPING WEBSITE</h1>
     </div>
     <nav>
       <ul>
-        <div class="container-fluid">
+        <!-- Show the function of the website. -->
+        <div class="container-fluid"> 
           <div class="row">
             <div class="col-md-4 text-center">
               <a href="login.html" target="_parent"><img src="../resources/images/icons8-user-16.png" alt="My Account" style="width: 50px;"></a>
@@ -58,10 +63,12 @@
     </nav>
   </header>
   <br>
+
   <main>
     <section>
       <div class="p-3 mb-sm-2 bg-light">
         <div class="container text-center">
+          <!-- Show the image of the products. -->
           <div class="row">
             <div class="col-md-4">
               <br>
@@ -101,7 +108,7 @@
                 </a>
               </div>
             </div>
-
+            <!-- Get the price of products from the database. -->
             <div class="col-md-4">
               <div class="caption">
                 <p class="text-danger"><?php include("connect_db_Goods.php");
@@ -130,7 +137,7 @@
                                         $db = null; ?>$</p>
               </div>
             </div>
-
+            <!-- The button fuction -->
             <div class="col-md-4">
               <a href="login.html" class="btn btn-primary" role="button">ADD</a>
             </div>
