@@ -41,6 +41,7 @@ $user_name = $row['USERNAME'];
                             <div class="col-md-4">
                                 <div class="d-flex justify-content-center font-weight-bold">Prices</div>
                             </div>
+                            <!-- Show the names, amounts, and prices of all the products you have added -->
                             <div class="col-md-4">
                                 <div class="d-flex justify-content-center">
                                     <?php
@@ -128,6 +129,7 @@ $user_name = $row['USERNAME'];
                             <div class="d-flex justify-content-center">
                                 <a href="payment.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">BUY</a>
                             </div>
+                            <!-- Notice status about payment -->
                             <div class="d-flex justify-content-center"><?php
                                                                         if (isset($_SESSION['status']) && $_SESSION['status'] == 'successful') {
                                                                             echo '<p style="color: green;">Payment successful!</p>';
